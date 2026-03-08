@@ -1,0 +1,7 @@
+<div class="flex justify-center">
+  @for (item of [1, 2, 3, 4, 5]; track $index) {
+    <button class="cursor-pointer text-4xl" (click)="selectStar(item)">
+      {{ item <= starSelected() ? '★' : '☆' }}
+    </button>
+  }
+</div>

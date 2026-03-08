@@ -1,0 +1,20 @@
+<main class="flex justify-center mt-8">
+  <div class="flex flex-col content-center gap-4">
+    <p class="text-3xl text-center">{{ question() }}</p>
+    <app-starts (selected)="onStartSelected($event)" />
+
+    @let currentStart = startSelected();
+
+    @if (currentStart) {
+      <p class="text-center text-balance text-2xl">
+        {{ message() }}
+      </p>
+      <button
+        class="cursor-pointer border rounded-2xl px-2 w-2xs self-center"
+        (click)="goTo(btnCTA().url)"
+      >
+        {{ btnCTA().label }}
+      </button>
+    }
+  </div>
+</main>
