@@ -38,7 +38,6 @@ export class RatePage implements OnInit {
 
   onStartSelected(start: number) {
     if (this.startSelected() === start) return;
-    console.log({ start });
 
     const currentMessage = this.messages()[start];
     this.startSelected.set(start);
@@ -50,6 +49,8 @@ export class RatePage implements OnInit {
   private sendReview() {
     console.log({
       review: this.startSelected(),
+      createdAt: new Date(),
+      cta: this.btnCTA().url,
     });
   }
 }

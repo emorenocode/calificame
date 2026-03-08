@@ -18,14 +18,14 @@ export const CLIENTS_RESPONSE_DATA_MOCK: Record<string, any> = {
         message: 'Message 4',
         cta: {
           label: 'Ir a Google Maps',
-          url: 'https://search.google.com/local/writereview?placeid=ChIJw5lBcPLIBZERIHt4YBZ3Hqg',
+          url: 'https://search.google.com/local/writereview?placeid=ChIJW2dHOC_JBZER-iwrjknZ-Uk',
         },
       },
       5: {
         message: 'Message 5',
         cta: {
           label: 'Ir a Google Maps',
-          url: 'https://search.google.com/local/writereview?placeid=ChIJw5lBcPLIBZERIHt4YBZ3Hqg',
+          url: 'https://search.google.com/local/writereview?placeid=ChIJW2dHOC_JBZER-iwrjknZ-Uk',
         },
       },
     },
@@ -49,14 +49,14 @@ export const CLIENTS_RESPONSE_DATA_MOCK: Record<string, any> = {
         message: 'Message 4',
         cta: {
           label: 'Ir a Google Maps',
-          url: 'https://search.google.com/local/writereview?placeid=ChIJw5lBcPLIBZERIHt4YBZ3Hqg',
+          url: 'https://search.google.com/local/writereview?placeid=ChIJW2dHOC_JBZER-iwrjknZ-Uk',
         },
       },
       5: {
         message: 'Message 5',
         cta: {
           label: 'Ir a Google Maps',
-          url: 'https://search.google.com/local/writereview?placeid=ChIJw5lBcPLIBZERIHt4YBZ3Hqg',
+          url: 'https://search.google.com/local/writereview?placeid=ChIJW2dHOC_JBZER-iwrjknZ-Uk',
         },
       },
     },

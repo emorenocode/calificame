@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CLIENTS_RESPONSE_DATA_MOCK } from '@mocks/*';
+import { CLIENTS_RESPONSE_DATA_MOCK } from '@mocks';
 import { of } from 'rxjs';
 
 @Injectable({

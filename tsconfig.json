@@ -16,7 +16,7 @@
     "module": "preserve",
     "baseUrl": "./",
     "paths": {
-      "@mocks/*": ["src/mocks/index.ts"],
+      "@mocks": ["src/mocks/index.ts"],
       "@/*": ["src/*"]
     }
   },
