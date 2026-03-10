@@ -1,14 +1,31 @@
-<main class="flex justify-center mt-8">
-  <div class="flex flex-col content-center gap-4">
+<main class="flex justify-center py-10">
+  <div
+    class="w-sm sm:w-sm md:w-xl flex flex-col content-center gap-4 bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white rounded-lg px-6 py-7 ring shadow-xl ring-gray-900/5"
+  >
     <p class="text-3xl text-center">{{ question() }}</p>
     <app-starts (selected)="onStartSelected($event)" />
 
     @let currentStart = startSelected();
 
     @if (currentStart) {
-      <p class="text-center text-balance text-2xl">
+      <p class="text-center text-balance text-2xl text-gray-500 dark:text-gray-200">
         {{ message() }}
       </p>
+
+      @if (currentStart < 4) {
+        <label for="txtWhatsApp" class="text-gray-400">Cuéntanos qué falló para ayudarte</label>
+        <textarea
+          class="border rounded border-gray-500 dark:border-amber-50 p-1.5"
+          name="txtWhatsApp"
+          id="txtWhatsApp"
+          placeholder="Tu feedback es confidencial y solo lo vera el gerente..."
+          [formControl]="formTxt"
+        ></textarea>
+        @if (formTxt.touched && formTxt.hasError('required')) {
+          <span class="text-amber-700">El mensaje es requerido</span>
+        }
+      }
+
       <button
         class="cursor-pointer border rounded-2xl px-2 w-2xs self-center"
         (click)="goTo(btnCTA().url)"

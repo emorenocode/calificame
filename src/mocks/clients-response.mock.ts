@@ -3,8 +3,9 @@ export const CLIENTS_RESPONSE_DATA_MOCK: Record<string, any> = {
     question: 'How was your visit today?',
     stars: {
       1: {
-        message: 'Message 1',
-        cta: { label: 'Ir a WhatsApp', url: 'https://wa.me/+1987654321?text=hello' },
+        message:
+          'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi totam similique dicta, perspiciatis saepe delectus repudiandae ea, sunt vero consequatur adipisci aut consequuntur quae quibusdam laborum. Deserunt tenetur natus itaque.',
+        cta: { label: 'Send WhatsApp', url: 'https://wa.me/+1987654321?text=hello' },
       },
       2: {
         message: 'Message 2',
