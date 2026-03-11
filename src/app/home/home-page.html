@@ -2,10 +2,177 @@
   <button class="border rounded p-2 text-blue-300" (click)="onLogin()">Login</button>
 </nav>
 
-<div class="hero p-2.5 mt-10">
-  <h1 class="text-center text-5xl text-balance font-bold">Domina las 5 estrellas en Google Maps</h1>
-  <p class="p-10 text-balance text-center text-gray-300">
-    filtra las quejas en privado y automatiza tus reseñas positivas. Mejora tu reputación online sin
-    esfuerzo y atrae más clientes.
-  </p>
-</div>
+<section class="relative pt-20 pb-20 px-6 overflow-hidden">
+  <div
+    class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-125 bg-lineal-to-b from-amber-50/10 to-transparent blur-3xl -z-10 opacity-50"
+  ></div>
+  <div class="max-w-5xl mx-auto text-center">
+    <div
+      class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50/10 border border-amber-50/20 text-amber-50 text-xs font-bold uppercase tracking-wider mb-8"
+    >
+      <span class="relative flex h-2 w-2">
+        <span
+          class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-50 opacity-75"
+        ></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-50"></span>
+      </span>
+      Impulsa tu negocio local
+    </div>
+    <h1
+      class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 bg-linear-to-b from-white to-slate-400 bg-clip-text text-transparent leading-14"
+    >
+      Domina las 5 estrellas en Google Maps
+    </h1>
+    <p class="p-10 text-balance text-center text-gray-300 text-2xl">
+      filtra las quejas en privado y automatiza tus reseñas positivas. Mejora tu reputación online
+      sin esfuerzo y atrae más clientes.
+    </p>
+    <div class="flex justify-center">
+      <button
+        class="w-full sm:w-auto bg-blue-400 text-white font-bold py-4 px-10 rounded-xl glow-button text-lg"
+      >
+        Empezar Ahora
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="mt-20 max-w-6xl mx-auto relative group">
+  <div
+    class="absolute -inset-1 bg-linear-to-r from-blue-400/20 to-purple-500/20 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000"
+  ></div>
+  <div class="relative glass-card rounded-2xl p-4 overflow-hidden shadow-2xl">
+    <div
+      class="w-full aspect-video rounded-lg bg-slate-900 flex items-center justify-center border border-white/5"
+      data-alt="Dashboard interface showing positive review trends and analytics"
+    >
+      <div class="grid grid-cols-3 gap-6 w-full p-8 h-full">
+        <div class="col-span-2 bg-slate-800/50 rounded-xl border border-white/5 p-6">
+          <div class="flex items-center justify-between mb-8">
+            <div class="h-4 w-32 bg-slate-700 rounded"></div>
+            <div class="flex gap-1">
+              <span class="material-symbols-outlined text-yellow-500 text-sm">star</span>
+              <span class="material-symbols-outlined text-yellow-500 text-sm">star</span>
+              <span class="material-symbols-outlined text-yellow-500 text-sm">star</span>
+              <span class="material-symbols-outlined text-yellow-500 text-sm">star</span>
+              <span class="material-symbols-outlined text-yellow-500 text-sm">star</span>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <div
+              class="h-32 w-full bg-gradient-to-t from-primary/10 to-transparent rounded-lg border-b border-primary/20 flex items-end p-4"
+            >
+              <div class="flex items-end gap-2 w-full">
+                <div class="h-1/2 w-full bg-primary/40 rounded-t"></div>
+                <div class="h-3/4 w-full bg-primary/40 rounded-t"></div>
+                <div class="h-2/3 w-full bg-primary/40 rounded-t"></div>
+                <div class="h-5/6 w-full bg-primary/40 rounded-t"></div>
+                <div class="h-full w-full bg-primary rounded-t"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="space-y-6">
+          <div class="bg-slate-800/50 rounded-xl border border-white/5 p-4">
+            <div class="h-3 w-20 bg-slate-700 rounded mb-4"></div>
+            <div class="text-3xl font-bold text-primary">4.9/5.0</div>
+          </div>
+          <div class="bg-slate-800/50 rounded-xl border border-white/5 p-4">
+            <div class="h-3 w-24 bg-slate-700 rounded mb-4"></div>
+            <div class="text-3xl font-bold text-white">+124</div>
+            <div class="text-[10px] text-green-400 mt-1">Nuevas reseñas este mes</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-24 px-6 relative" id="features">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="glass-card p-8 rounded-2xl hover:border-amber-50/40 transition-colors">
+        <div class="w-12 h-12 rounded-xl bg-amber-50/10 flex items-center justify-center mb-6">
+          <span class="material-symbols-outlined text-amber-50 text-3xl">filter_list</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Filtrado Inteligente</h3>
+        <p class="text-slate-400 leading-relaxed">
+          Las quejas negativas son dirigidas a un formulario privado, permitiéndote resolver el
+          problema antes de que llegue a Google Maps.
+        </p>
+      </div>
+      <div class="glass-card p-8 rounded-2xl hover:border-amber-50/40 transition-colors">
+        <div class="w-12 h-12 rounded-xl bg-amber-50/10 flex items-center justify-center mb-6">
+          <span class="material-symbols-outlined text-amber-50 text-3xl">qr_code_2</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3">QR Dinámico</h3>
+        <p class="text-slate-400 leading-relaxed">
+          Genera códigos QR personalizados para tus mesas o recepción que redirigen automáticamente
+          a tus clientes satisfechos a Google.
+        </p>
+      </div>
+      <div class="glass-card p-8 rounded-2xl hover:border-amber-50/40 transition-colors">
+        <div class="w-12 h-12 rounded-xl bg-amber-50/10 flex items-center justify-center mb-6">
+          <span class="material-symbols-outlined text-amber-50 text-3xl">analytics</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Dashboard Linear</h3>
+        <p class="text-slate-400 leading-relaxed">
+          Visualiza tu crecimiento con una interfaz minimalista. Mira cuántas reseñas has ganado y
+          gestiona el feedback privado.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-24 px-6 bg-linear-to-b from-transparent to-primary/5" id="pricing">
+  <div class="max-w-7xl mx-auto text-center">
+    <h2 class="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Simple y Transparente</h2>
+    <p class="text-slate-400 mb-16">Todo lo que necesitas para escalar tu reputación local.</p>
+    <div class="max-w-md mx-auto relative">
+      <div
+        class="absolute -inset-2 bg-linear-to-r from-primary/40 to-cyan-400/40 rounded-3xl blur-xl opacity-20"
+      ></div>
+      <div class="relative glass-card rounded-3xl p-10 flex flex-col items-center">
+        <span
+          class="bg-primary text-white text-[10px] font-black uppercase px-4 py-1.5 rounded-full mb-6 tracking-widest"
+          >Plan Único Pro</span
+        >
+        <div class="flex items-baseline gap-1 mb-8">
+          <span class="text-5xl font-black">$29</span>
+          <span class="text-slate-400 text-lg">/mes</span>
+        </div>
+        <ul class="w-full space-y-5 mb-10">
+          <li class="flex items-center gap-3 text-sm text-slate-300">
+            <span class="material-symbols-outlined text-primary">check_circle</span>
+            <span>Reseñas ilimitadas mensuales</span>
+          </li>
+          <li class="flex items-center gap-3 text-sm text-slate-300">
+            <span class="material-symbols-outlined text-primary">check_circle</span>
+            <span>Filtrado inteligente de quejas</span>
+          </li>
+          <li class="flex items-center gap-3 text-sm text-slate-300">
+            <span class="material-symbols-outlined text-primary">check_circle</span>
+            <span>QR personalizable de alta resolución</span>
+          </li>
+          <li class="flex items-center gap-3 text-sm text-slate-300">
+            <span class="material-symbols-outlined text-primary">check_circle</span>
+            <span>Dashboard en tiempo real</span>
+          </li>
+          <li class="flex items-center gap-3 text-sm text-slate-300">
+            <span class="material-symbols-outlined text-primary">check_circle</span>
+            <span>Integración con WhatsApp</span>
+          </li>
+          <li class="flex items-center gap-3 text-sm text-slate-300">
+            <span class="material-symbols-outlined text-primary">check_circle</span>
+            <span>Soporte prioritario 24/7</span>
+          </li>
+        </ul>
+        <button class="w-full bg-blue-400 text-white font-bold py-4 rounded-xl glow-button text-lg">
+          Empezar ahora
+        </button>
+        <p class="text-[11px] text-slate-500 mt-6">Sin contratos, cancela cuando quieras.</p>
+      </div>
+    </div>
+  </div>
+</section>
