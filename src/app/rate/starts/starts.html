@@ -1,7 +1,7 @@
 <div class="flex justify-center gap-1">
   @for (item of [1, 2, 3, 4, 5]; track $index) {
     <button
-      class="cursor-pointer text-4xl text-gray-900 dark:text-white"
+      class="cursor-pointer text-4xl text-white"
       [class.selected]="item <= starSelected()"
       (click)="selectStar(item)"
     >
