@@ -1,5 +1,5 @@
 <nav class="flex justify-end p-3">
-  <button class="border rounded p-2 text-blue-300" (click)="onLogin()">Login</button>
+  <button class="border rounded p-2 text-blue-300" [routerLink]="['/login']">Login</button>
 </nav>
 
 <section class="relative pt-20 pb-20 px-6 overflow-hidden">
@@ -30,6 +30,7 @@
     <div class="flex justify-center">
       <button
         class="w-full sm:w-auto bg-blue-400 text-white font-bold py-4 px-10 rounded-xl glow-button text-lg"
+        [routerLink]="['/register']"
       >
         Empezar Ahora
       </button>
@@ -168,7 +169,10 @@
             <span>Soporte prioritario 24/7</span>
           </li>
         </ul>
-        <button class="w-full bg-blue-400 text-white font-bold py-4 rounded-xl glow-button text-lg">
+        <button
+          class="w-full bg-blue-400 text-white font-bold py-4 rounded-xl glow-button text-lg"
+          [routerLink]="['/register']"
+        >
           Empezar ahora
         </button>
         <p class="text-[11px] text-slate-500 mt-6">Sin contratos, cancela cuando quieras.</p>

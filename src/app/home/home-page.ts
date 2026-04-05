@@ -1,16 +1,10 @@
-import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './home-page.html',
   styleUrl: './home-page.css',
 })
-export class HomePage {
-  private readonly router = inject(Router);
-
-  onLogin() {
-    this.router.navigate(['/login']);
-  }
-}
+export class HomePage {}

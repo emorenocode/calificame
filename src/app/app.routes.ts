@@ -23,6 +23,10 @@ export const routes: Routes = [
     loadChildren: () => import('./dashboard/dashboard.routes').then((r) => r.routes),
   },
   {
+    path: 'register',
+    loadComponent: () => import('./register/register-page').then((c) => c.RegisterPage),
+  },
+  {
     path: '',
     component: HomePage,
   },
