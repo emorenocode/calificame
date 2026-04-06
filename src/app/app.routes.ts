@@ -30,4 +30,9 @@ export const routes: Routes = [
     path: '',
     component: HomePage,
   },
+  {
+    path: '**',
+    redirectTo: '/',
+    pathMatch: 'full',
+  },
 ];

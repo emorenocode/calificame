@@ -2,6 +2,7 @@ import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { Starts } from './starts/starts';
 import { RateService } from '@/app/rate/rate-service';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-rate-page',
@@ -18,6 +19,7 @@ export class RatePage implements OnInit {
   public readonly messages = signal<any>(null);
   public readonly btnCTA = signal<{ label: string; url: string }>({ label: '', url: '' });
   private readonly rateService = inject(RateService);
+  private readonly router = inject(Router);
 
   constructor() {}
 
@@ -53,6 +55,11 @@ export class RatePage implements OnInit {
   getClientConfig() {
     this.rateService.getClientConfig(this.clientId()).subscribe({
       next: (client) => {
+        console.log('Res ', client);
+        if (!client) {
+          this.router.navigate(['/']);
+          return;
+        }
         this.question.set(client.question);
         this.messages.set(client.stars);
       },
