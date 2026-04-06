@@ -5,5 +5,11 @@ export const routes: Routes = [
   {
     path: '',
     component: DashboardPage,
+    children: [
+      {
+        path: 'store',
+        loadComponent: () => import('./pages/store/store-page').then((c) => c.StorePage),
+      },
+    ],
   },
 ];
