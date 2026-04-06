@@ -1,11 +1,11 @@
 import { UserService } from '@/app/shared/services/user-service';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgOptimizedImage } from '@angular/common';
+import { Navbar } from './components/navbar/navbar';
 
 @Component({
   selector: 'app-dashboard-page',
-  imports: [NgOptimizedImage],
+  imports: [Navbar],
   templateUrl: './dashboard-page.html',
   styleUrl: './dashboard-page.css',
 })

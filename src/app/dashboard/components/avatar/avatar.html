@@ -1,0 +1,15 @@
+@if (username()) {
+  <div class="flex justify-center items-center h-8 w-8 rounded-full bg-white text-black">
+    <span>{{ username() }}</span>
+  </div>
+} @else {
+  <img
+    class="h-8 w-8 rounded-full bg-white"
+    width="32"
+    height="32"
+    ngSrc="{{ userService.currentUser()?.photoURL }}"
+    alt="{{ userService.currentUser()?.name }}"
+    title="{{ userService.currentUser()?.name }}"
+    (error)="onErrorLoadingImg()"
+  />
+}

@@ -1,12 +1,3 @@
-<nav class="flex justify-end p-4">
-  <img
-    class="rounded-full bg-white"
-    width="32"
-    height="32"
-    ngSrc="{{ userService.currentUser()?.photoURL }}"
-    alt="{{ userService.currentUser()?.name }}"
-    title="{{ userService.currentUser()?.name }}"
-  />
-</nav>
+<app-navbar />
 <p>dashboard works!</p>
 <button (click)="onLogout()">Logout</button>
