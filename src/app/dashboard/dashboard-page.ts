@@ -24,8 +24,18 @@ export class DashboardPage implements OnInit {
   getUser() {
     const userRef = doc(this.firestore, 'user', this.currentUser!.id);
     from(getDoc(userRef)).subscribe({
-      next: (user) => {
-        console.log('User ', user.data());
+      next: (doc) => {
+        const user = doc.data();
+        console.log('User ', user);
+
+        if (!user) return;
+
+        const userStores = user['stores'];
+        console.log('UserStores ', userStores);
+
+        if (!userStores || userStores.length === 0) {
+          this.router.navigate(['/dashboard/stores'], { queryParams: { action: 'add' } });
+        }
       },
       error: (err) => {
         console.error('Error to get user: ', err);
@@ -36,58 +46,5 @@ export class DashboardPage implements OnInit {
   onLogout() {
     this.userService.logout();
     this.router.navigate(['/']);
-  }
-
-  onSaveQuestion() {
-    const questionToSave = {
-      question: 'Que tal?',
-      stars: {
-        1: {
-          message: 'Message 1',
-          cta: {
-            label: 'Send WhatsApp',
-            url: 'https://wa.me/+1987654321?text=hello',
-          },
-        },
-        2: {
-          message: 'Message 2',
-          cta: {
-            label: 'Ir a WhatsApp',
-            url: 'https://wa.me/+1987654321?text=hello',
-          },
-        },
-        3: {
-          message: 'Message 3',
-          cta: {
-            label: 'Ir a WhatsApp',
-            url: 'https://wa.me/+1987654321?text=hello',
-          },
-        },
-        4: {
-          message: 'Message 4',
-          cta: {
-            label: 'Ir a Google Maps',
-            url: 'https://search.google.com/local/writereview?placeid=ChIJW2dHOC_JBZER-iwrjknZ-Uk',
-          },
-        },
-        5: {
-          message: 'Message 5',
-          cta: {
-            label: 'Ir a Google Maps',
-            url: 'https://search.google.com/local/writereview?placeid=ChIJW2dHOC_JBZER-iwrjknZ-Uk',
-          },
-        },
-      },
-    };
-
-    const newQuestionRef = doc(collection(this.firestore, 'question'));
-    // const newStoreRef = doc(this.firestore, 'question', this.userService.currentUser()!.id);
-    console.log('newQuestionRef ', newQuestionRef);
-    return from(setDoc(newQuestionRef, questionToSave)).pipe(
-      tap((res) => {
-        // this.saveLocalData(player);
-        console.log('Res => ', res);
-      }),
-    );
   }
 }

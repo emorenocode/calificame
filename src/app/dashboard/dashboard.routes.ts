@@ -7,8 +7,8 @@ export const routes: Routes = [
     component: DashboardPage,
     children: [
       {
-        path: 'store',
-        loadComponent: () => import('./pages/store/store-page').then((c) => c.StorePage),
+        path: 'stores',
+        loadComponent: () => import('./pages/stores/stores-page').then((c) => c.StoresPage),
       },
     ],
   },

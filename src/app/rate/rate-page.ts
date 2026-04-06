@@ -60,8 +60,8 @@ export class RatePage implements OnInit {
           this.router.navigate(['/']);
           return;
         }
-        this.question.set(client.question);
-        this.messages.set(client.stars);
+        this.question.set(client['question']);
+        this.messages.set(client['stars']);
       },
     });
   }
