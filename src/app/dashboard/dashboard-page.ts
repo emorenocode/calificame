@@ -2,8 +2,8 @@ import { UserService } from '@/app/shared/services/user-service';
 import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { Navbar } from './components/navbar/navbar';
-import { from, map, tap } from 'rxjs';
-import { collection, doc, Firestore, getDoc, setDoc } from '@angular/fire/firestore';
+import { from } from 'rxjs';
+import { collection, doc, Firestore, getDoc, getDocs } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -19,6 +19,19 @@ export class DashboardPage implements OnInit {
 
   ngOnInit(): void {
     this.getUser();
+    this.getEstablishments();
+  }
+
+  getEstablishments() {
+    from(
+      getDocs(collection(this.firestore, 'user', this.currentUser!.id, 'establishments')),
+    ).subscribe({
+      next: (res) => {
+        console.log('Res ', res);
+        if (!res.empty) return;
+        this.router.navigate(['/dashboard/establishments']);
+      },
+    });
   }
 
   getUser() {
@@ -29,13 +42,6 @@ export class DashboardPage implements OnInit {
         console.log('User ', user);
 
         if (!user) return;
-
-        const userStores = user['stores'];
-        console.log('UserStores ', userStores);
-
-        if (!userStores || userStores.length === 0) {
-          this.router.navigate(['/dashboard/stores'], { queryParams: { action: 'add' } });
-        }
       },
       error: (err) => {
         console.error('Error to get user: ', err);

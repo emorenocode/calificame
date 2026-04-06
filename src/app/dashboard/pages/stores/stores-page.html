@@ -1,1 +1,54 @@
-<p>store works!</p>
+<p-dialog
+  header="Establecimiento"
+  [modal]="true"
+  [(visible)]="showDialogAddEstablishment"
+  [style]="{ width: '25rem' }"
+>
+  <form [formGroup]="formGroup">
+    <div class="flex items-center gap-4 mb-4">
+      <label for="name" class="font-semibold w-24">Nombre</label>
+      <input pInputText id="name" class="flex-auto" autocomplete="off" formControlName="name" />
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+      <label for="address" class="font-semibold w-24">Dirección</label>
+      <input
+        pInputText
+        id="address"
+        class="flex-auto"
+        autocomplete="off"
+        formControlName="address"
+      />
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+      <label for="placeId" class="font-semibold w-24">Place ID</label>
+      <input
+        pInputText
+        id="placeId"
+        class="flex-auto"
+        autocomplete="off"
+        formControlName="placeId"
+      />
+    </div>
+  </form>
+  <div class="flex justify-end gap-2">
+    <p-button label="Cancelar" severity="secondary" (click)="showDialogAddEstablishment = false" />
+    <p-button label="Guardar" (click)="onSaveEstablishment()" />
+  </div>
+</p-dialog>
+
+@for (establishment of establishmentList(); track $index) {
+  <div>
+    <div>
+      <span>Nombre: </span>
+      <span>{{ establishment.name }}</span>
+    </div>
+    <div>
+      <span>Dirección: </span>
+      <span>{{ establishment.address }}</span>
+    </div>
+    <div>
+      <span>PlaceID: </span>
+      <span>{{ establishment.placeId }}</span>
+    </div>
+  </div>
+}

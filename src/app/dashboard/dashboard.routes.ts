@@ -7,7 +7,7 @@ export const routes: Routes = [
     component: DashboardPage,
     children: [
       {
-        path: 'stores',
+        path: 'establishments',
         loadComponent: () => import('./pages/stores/stores-page').then((c) => c.StoresPage),
       },
     ],
