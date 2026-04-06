@@ -10,7 +10,7 @@ import { Component, inject } from '@angular/core';
 export class LoginPage {
   private readonly userService = inject(UserService);
 
-  onLogin() {
+  loginWithGoogle() {
     this.userService.login();
   }
 }
