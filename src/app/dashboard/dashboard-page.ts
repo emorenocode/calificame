@@ -48,9 +48,4 @@ export class DashboardPage implements OnInit {
       },
     });
   }
-
-  onLogout() {
-    this.userService.logout();
-    this.router.navigate(['/']);
-  }
 }
