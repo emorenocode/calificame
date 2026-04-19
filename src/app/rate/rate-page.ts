@@ -1,8 +1,10 @@
 import { Component, inject, input, OnInit, signal } from '@angular/core';
-import { Starts } from './starts/starts';
-import { RateService } from '@/app/rate/rate-service';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SurveyService } from '@/app/core/services/survey.service';
+import { ResponseService } from '@/app/core/services/response.service';
+import { Survey } from '@/app/core/models';
+import { Starts } from './starts/starts';
 
 @Component({
   selector: 'app-rate-page',
@@ -12,19 +14,35 @@ import { Router } from '@angular/router';
 })
 export class RatePage implements OnInit {
   public readonly formTxt = new FormControl(null, Validators.required);
-  public readonly clientId = input.required<string>();
+  public readonly surveyId = input.required<string>();
   public readonly question = signal('');
   public readonly startSelected = signal<number | null>(null);
   public readonly message = signal('');
   public readonly messages = signal<any>(null);
   public readonly btnCTA = signal<{ label: string; url: string }>({ label: '', url: '' });
-  private readonly rateService = inject(RateService);
   private readonly router = inject(Router);
+  private readonly surveyService = inject(SurveyService);
+  private readonly responseService = inject(ResponseService);
+  private currentSurvey!: Survey;
 
   constructor() {}
 
   ngOnInit(): void {
-    this.getClientConfig();
+    this.getSurvey();
+  }
+
+  getSurvey() {
+    this.surveyService.getById(this.surveyId()).subscribe({
+      next: (survey) => {
+        if (!survey) {
+          this.router.navigate(['/']);
+          return;
+        }
+        this.question.set(survey.question);
+        this.messages.set(survey.stars);
+        this.currentSurvey = survey;
+      },
+    });
   }
 
   goTo(url: string) {
@@ -37,7 +55,19 @@ export class RatePage implements OnInit {
 
     url = this.validateWhatsAppText(url);
 
-    window.open(url);
+    this.responseService
+      .submit({
+        surveyId: this.currentSurvey.id,
+        establishmentId: this.currentSurvey.establishmentId,
+        rating: this.startSelected()!,
+        comment: this.formTxt.value || '',
+      })
+      .subscribe({
+        next: (res) => {
+          console.log('Res => ', res);
+          window.open(url);
+        },
+      });
   }
 
   validateWhatsAppText(url: string): string {
@@ -52,20 +82,6 @@ export class RatePage implements OnInit {
     return url;
   }
 
-  getClientConfig() {
-    this.rateService.getClientConfig(this.clientId()).subscribe({
-      next: (client) => {
-        console.log('Res ', client);
-        if (!client) {
-          this.router.navigate(['/']);
-          return;
-        }
-        this.question.set(client['question']);
-        this.messages.set(client['stars']);
-      },
-    });
-  }
-
   onStartSelected(start: number) {
     if (this.startSelected() === start) return;
 
@@ -73,16 +89,5 @@ export class RatePage implements OnInit {
     this.startSelected.set(start);
     this.message.set(currentMessage.message);
     this.btnCTA.set(currentMessage.cta);
-    this.sendReview();
-  }
-
-  private sendReview() {
-    setTimeout(() => {
-      console.log({
-        review: this.startSelected(),
-        createdAt: new Date(),
-        cta: this.btnCTA().url,
-      });
-    }, 1000);
   }
 }

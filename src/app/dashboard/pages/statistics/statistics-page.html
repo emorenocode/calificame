@@ -1,2 +1,17 @@
-<p>statistics-page works!</p>
-<p>Establecimiento: {{ currentEstablishment().name }}</p>
+<div>Tu cuenta expira el {{ currentUser?.expireOn | date: 'MM/dd/yyyy' }}</div>
+
+<div class="flex gap-2">
+  <div>
+    <div class="flex gap-2 items-center">
+      <span class="pi pi-shop"></span>
+      <span>{{ currentEstablishment()?.name }}</span>
+    </div>
+  </div>
+
+  <div>
+    <div class="flex gap-2 items-center">
+      <span class="pi pi-star"></span>
+      <span>{{ currentEstablishment()?.avgRating }}</span>
+    </div>
+  </div>
+</div>

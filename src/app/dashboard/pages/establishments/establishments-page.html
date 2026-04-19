@@ -36,19 +36,21 @@
   </div>
 </p-dialog>
 
-@for (establishment of establishmentList(); track $index) {
-  <div>
-    <div>
-      <span>Nombre: </span>
-      <span>{{ establishment.name }}</span>
+<div class="p-1">
+  @for (establishment of establishmentList(); track $index) {
+    <div class="border rounded p-2">
+      <div class="flex gap-1 items-center">
+        <span class="pi pi-shop"></span>
+        <span>{{ establishment.name }}</span>
+      </div>
+      <div class="flex gap-1 items-center">
+        <span class="pi pi-map-marker"></span>
+        <span>{{ establishment.address }}</span>
+      </div>
+      <div class="flex gap-1 items-center">
+        <span class="pi pi-map"></span>
+        <span>{{ establishment.placeId }}</span>
+      </div>
     </div>
-    <div>
-      <span>Dirección: </span>
-      <span>{{ establishment.address }}</span>
-    </div>
-    <div>
-      <span>PlaceID: </span>
-      <span>{{ establishment.placeId }}</span>
-    </div>
-  </div>
-}
+  }
+</div>

@@ -7,9 +7,9 @@
     class="h-8 w-8 rounded-full bg-white"
     width="32"
     height="32"
-    ngSrc="{{ userService.currentUser()?.photoURL }}"
-    alt="{{ userService.currentUser()?.name }}"
-    title="{{ userService.currentUser()?.name }}"
+    ngSrc="{{ currentUser()?.photoURL }}"
+    alt="{{ currentUser()?.name }}"
+    title="{{ currentUser()?.name }}"
     (error)="onErrorLoadingImg()"
   />
 }

@@ -1,45 +1,35 @@
+import { Establishment } from '@/app/core/models';
+import { EstablishmentService } from '@/app/core/services/establishment.service';
 import { UserService } from '@/app/shared/services/user-service';
+import { DatePipe } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { collection, Firestore, getDocs } from '@angular/fire/firestore';
-import { Router } from '@angular/router';
-import { from } from 'rxjs';
 
 @Component({
   selector: 'app-statistics-page',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './statistics-page.html',
   styleUrl: './statistics-page.css',
 })
 export class StatisticsPage implements OnInit {
   protected readonly userService = inject(UserService);
-  private readonly router = inject(Router);
-  private readonly firestore = inject(Firestore);
-  private currentUser = this.userService.currentUser();
+  protected readonly currentUser = this.userService.currentUser();
 
-  public readonly establishmentsList = signal<any[]>([]);
-  public readonly currentEstablishment = signal<any | undefined>(undefined);
+  public readonly establishmentsList = signal<Establishment[]>([]);
+  public readonly currentEstablishment = signal<Establishment | undefined>(undefined);
+  public readonly establishmentService = inject(EstablishmentService);
 
   ngOnInit(): void {
     this.getEstablishments();
   }
 
   getEstablishments() {
-    from(
-      getDocs(collection(this.firestore, 'user', this.currentUser!.id, 'establishments')),
-    ).subscribe({
-      next: (res) => {
-        console.log('Res ', res);
-        if (res.empty) {
-          this.router.navigate(['/dashboard/establishments']);
+    this.establishmentService.getByOwnerId(this.currentUser!.id).subscribe({
+      next: (establishments: Establishment[]) => {
+        if (establishments.length === 0) {
           return;
         }
 
-        res.docs.forEach((doc) => {
-          console.log('Doc => ', doc.id, ' - ', doc.data());
-          const establishment = {
-            ...doc.data(),
-            id: doc.id,
-          };
+        establishments.forEach((establishment) => {
           this.establishmentsList.update((list) => [...list, establishment]);
         });
 

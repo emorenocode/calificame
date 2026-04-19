@@ -1,15 +1,21 @@
-import { Component, inject } from '@angular/core';
-import { collection, doc, Firestore, setDoc } from '@angular/fire/firestore';
-import { from, tap } from 'rxjs';
+import { Component, inject, input } from '@angular/core';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Establishment } from '@/app/core/models';
+import { SurveyService } from '@/app/core/services/survey.service';
+import { UserService } from '@/app/shared/services/user-service';
 
 @Component({
   selector: 'app-questions',
   imports: [],
   templateUrl: './questions.html',
   styleUrl: './questions.css',
+  providers: [DialogService],
 })
 export class Questions {
-  private readonly firestore = inject(Firestore);
+  private readonly surveyService = inject(SurveyService);
+  private readonly userService = inject(UserService);
+  private readonly dialogRef = inject(DynamicDialogRef);
+  establishment = input<Establishment>();
 
   onSaveQuestion() {
     const questionToSave = {
@@ -53,14 +59,23 @@ export class Questions {
       },
     };
 
-    const newQuestionRef = doc(collection(this.firestore, 'question'));
-    // const newStoreRef = doc(this.firestore, 'question', this.userService.currentUser()!.id);
-    console.log('newQuestionRef ', newQuestionRef);
-    return from(setDoc(newQuestionRef, questionToSave)).pipe(
-      tap((res) => {
-        // this.saveLocalData(player);
-        console.log('Res => ', res);
-      }),
-    );
+    this.surveyService
+      .create({
+        ...questionToSave,
+        id: '',
+        ownerId: this.userService.currentUser()!.id,
+        establishmentId: this.establishment()!.id,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        isActive: true,
+      })
+      .subscribe({
+        next: (res) => {
+          this.dialogRef.close({
+            ...questionToSave,
+            id: res.id,
+          });
+        },
+      });
   }
 }

@@ -11,9 +11,10 @@ import { Component, inject, signal } from '@angular/core';
 export class Avatar {
   protected userService = inject(UserService);
   protected username = signal<string | undefined>(undefined);
+  protected currentUser = this.userService.currentUser;
 
   onErrorLoadingImg() {
-    const arrayName = this.userService.currentUser()?.name?.split(' ');
+    const arrayName = this.currentUser()?.name?.split(' ');
     if (arrayName) {
       if (arrayName?.length >= 2) {
         this.username.set(`${arrayName[0][0].toUpperCase()}${arrayName[1][0].toUpperCase()}`);
