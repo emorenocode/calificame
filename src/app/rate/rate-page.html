@@ -2,40 +2,47 @@
   @if (isLoading()) {
     <i class="pi pi-spin pi-spinner" style="font-size: 5rem"></i>
   } @else {
-    <div
-      class="w-sm sm:w-sm md:w-xl flex flex-col content-center gap-4 rounded-lg px-6 py-7 ring shadow-xl ring-gray-900/5 bg-sky-950 text-white"
-    >
-      <p class="text-3xl text-center">{{ question() }}</p>
-      <app-starts (selected)="onStartSelected($event)" />
+    @if (isSubmitted()) {
+      <div class="text-center">
+        <h2 class="text-3xl">Gracias</h2>
+        <h3 class="text-2xl">Tu opinión es importante para nosotros</h3>
+      </div>
+    } @else {
+      <div
+        class="w-sm sm:w-sm md:w-xl flex flex-col content-center gap-4 rounded-lg px-6 py-7 ring shadow-xl ring-gray-900/5 bg-sky-950 text-white"
+      >
+        <p class="text-3xl text-center">{{ question() }}</p>
+        <app-starts (selected)="onStartSelected($event)" />
 
-      @let currentStart = startSelected();
+        @let currentStart = startSelected();
 
-      @if (currentStart) {
-        <p class="text-center text-balance text-2xl text-gray-200">
-          {{ message() }}
-        </p>
+        @if (currentStart) {
+          <p class="text-center text-balance text-2xl text-gray-200">
+            {{ message() }}
+          </p>
 
-        @if (currentStart < 4) {
-          <label for="txtWhatsApp" class="text-gray-400">Cuéntanos qué falló para ayudarte</label>
-          <textarea
-            class="border rounded border-amber-50 p-1.5"
-            name="txtWhatsApp"
-            id="txtWhatsApp"
-            placeholder="Tu feedback es confidencial y solo lo vera el gerente..."
-            [formControl]="formTxt"
-          ></textarea>
-          @if (formTxt.touched && formTxt.hasError('required')) {
-            <span class="text-amber-700">El mensaje es requerido</span>
+          @if (currentStart < 4) {
+            <label for="txtWhatsApp" class="text-gray-400">Cuéntanos qué falló para ayudarte</label>
+            <textarea
+              class="border rounded border-amber-50 p-1.5"
+              name="txtWhatsApp"
+              id="txtWhatsApp"
+              placeholder="Tu feedback es confidencial y solo lo vera el gerente..."
+              [formControl]="formTxt"
+            ></textarea>
+            @if (formTxt.touched && formTxt.hasError('required')) {
+              <span class="text-amber-700">El mensaje es requerido</span>
+            }
           }
-        }
 
-        <button
-          class="cursor-pointer border rounded-2xl px-2 w-2xs self-center"
-          (click)="goTo(btnCTA().url)"
-        >
-          {{ btnCTA().label }}
-        </button>
-      }
-    </div>
+          <button
+            class="cursor-pointer border rounded-2xl px-2 w-2xs self-center"
+            (click)="goTo(btnCTA().url)"
+          >
+            {{ btnCTA().label }}
+          </button>
+        }
+      </div>
+    }
   }
 </main>

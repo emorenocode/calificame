@@ -5,4 +5,5 @@ export interface Response {
   rating: number;
   comment: string;
   createdAt: Date;
+  resolved: boolean;
 }

@@ -14,6 +14,7 @@ import { Starts } from './starts/starts';
 })
 export class RatePage implements OnInit {
   public readonly isLoading = signal(true);
+  public readonly isSubmitted = signal(false);
   public readonly formTxt = new FormControl(null, Validators.required);
   public readonly surveyId = input.required<string>();
   public readonly question = signal('');
@@ -63,11 +64,13 @@ export class RatePage implements OnInit {
         establishmentId: this.currentSurvey.establishmentId,
         rating: this.startSelected()!,
         comment: this.formTxt.value || '',
+        resolved: false,
       })
       .subscribe({
         next: (res) => {
           console.log('Res => ', res);
           window.open(url);
+          this.isSubmitted.set(true);
         },
       });
   }
