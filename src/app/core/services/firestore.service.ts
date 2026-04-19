@@ -61,7 +61,7 @@ export class FirestoreService {
   }
 
   async getDoc<T>(path: string) {
-    const ref = doc(this.db, path);
+    const ref = this.getDocRef(path);
     const snap = await getDoc(ref);
     return snap.data() as T;
   }
@@ -75,7 +75,11 @@ export class FirestoreService {
   }
 
   updateDoc(path: string, data: any): Observable<any> {
-    const ref = doc(this.db, path);
+    const ref = this.getDocRef(path);
     return from(updateDoc(ref, data));
+  }
+
+  getDocRef(path: string) {
+    return doc(this.db, path);
   }
 }

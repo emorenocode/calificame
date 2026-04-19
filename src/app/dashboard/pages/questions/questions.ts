@@ -68,6 +68,7 @@ export class Questions {
         createdAt: new Date(),
         updatedAt: new Date(),
         isActive: true,
+        scanCount: 0,
       })
       .subscribe({
         next: (res) => {

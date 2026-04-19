@@ -7,6 +7,7 @@ export interface Survey {
   createdAt: Date;
   updatedAt: Date;
   isActive: boolean;
+  scanCount: number;
 }
 
 export interface Star {

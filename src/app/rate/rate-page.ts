@@ -44,8 +44,13 @@ export class RatePage implements OnInit {
         this.messages.set(survey.stars);
         this.currentSurvey = survey;
         this.isLoading.set(false);
+        this.sendScandalyticsEvent();
       },
     });
+  }
+
+  sendScandalyticsEvent() {
+    this.surveyService.sendScandalyticsEvent(this.surveyId()).subscribe();
   }
 
   goTo(url: string) {
