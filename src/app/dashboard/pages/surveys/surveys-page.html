@@ -12,7 +12,7 @@
 <p-button label="Create Question" icon="pi pi-question" (onClick)="onCreateSurvey()" />
 
 <div>
-  @for (survey of surveysList; track $index) {
+  @for (survey of surveysList(); track $index) {
     <div>
       {{ survey.question }}
     </div>

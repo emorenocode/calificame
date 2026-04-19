@@ -1,5 +1,5 @@
 import { UserService } from '@/app/shared/services/user-service';
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 
 @Component({
   selector: 'app-register-page',
@@ -8,9 +8,13 @@ import { Component, inject } from '@angular/core';
   styleUrl: './register-page.css',
 })
 export class RegisterPage {
+  protected readonly isLoading = signal(false);
   protected readonly userService = inject(UserService);
 
   registerWithGoogle() {
-    this.userService.login();
+    this.isLoading.set(true);
+    this.userService.login().finally(() => {
+      this.isLoading.set(false);
+    });
   }
 }

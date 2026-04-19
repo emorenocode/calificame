@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { SelectModule } from 'primeng/select';
@@ -24,7 +24,7 @@ export class SurveysPage implements OnInit {
   private readonly surveyService = inject(SurveyService);
   public establishmentsList: Establishment[] = [];
   public selectedEstablishment: Establishment | undefined = undefined;
-  public surveysList: Survey[] = [];
+  public surveysList = signal<Survey[]>([]);
 
   ngOnInit(): void {
     this.getEstablishments();
@@ -49,8 +49,7 @@ export class SurveysPage implements OnInit {
         },
       })!
       .onClose.subscribe((survey) => {
-        console.log('Dialog closed: ', survey);
-        this.surveysList.push(survey);
+        this.surveysList.update((surveys) => [...surveys, survey]);
       });
   }
 
@@ -61,8 +60,7 @@ export class SurveysPage implements OnInit {
 
     this.surveyService.getByEstablishmentId(this.selectedEstablishment.id).subscribe({
       next: (surveys) => {
-        console.log('Encuestas ', surveys);
-        this.surveysList = surveys;
+        this.surveysList.set(surveys);
       },
     });
   }
