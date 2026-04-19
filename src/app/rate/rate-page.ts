@@ -13,6 +13,7 @@ import { Starts } from './starts/starts';
   styleUrl: './rate-page.css',
 })
 export class RatePage implements OnInit {
+  public readonly isLoading = signal(true);
   public readonly formTxt = new FormControl(null, Validators.required);
   public readonly surveyId = input.required<string>();
   public readonly question = signal('');
@@ -41,6 +42,7 @@ export class RatePage implements OnInit {
         this.question.set(survey.question);
         this.messages.set(survey.stars);
         this.currentSurvey = survey;
+        this.isLoading.set(false);
       },
     });
   }
