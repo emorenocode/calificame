@@ -1,5 +1,5 @@
 import { UserService } from '@/app/shared/services/user-service';
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 
 @Component({
   selector: 'app-login-page',
@@ -9,8 +9,12 @@ import { Component, inject } from '@angular/core';
 })
 export class LoginPage {
   private readonly userService = inject(UserService);
+  protected readonly isLoading = signal(false);
 
   loginWithGoogle() {
-    this.userService.login();
+    this.isLoading.set(true);
+    this.userService.login().finally(() => {
+      this.isLoading.set(false);
+    });
   }
 }
