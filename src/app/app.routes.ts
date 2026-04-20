@@ -9,7 +9,7 @@ export const routes: Routes = [
     loadComponent: () => import('./login/login-page').then((c) => c.LoginPage),
   },
   {
-    path: 'rate/:surveyId',
+    path: 'r/:surveyId',
     loadComponent: () => import('./rate/rate-page').then((c) => c.RatePage),
   },
   {

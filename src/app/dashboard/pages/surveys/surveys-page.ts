@@ -6,7 +6,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { Establishment, Survey } from '@/app/core/models';
 import { EstablishmentService } from '@/app/core/services/establishment.service';
 import { UserService } from '@/app/shared/services/user-service';
-import { Questions } from '@/app/dashboard/pages/questions/questions';
+import { Questions } from '@/app/dashboard/components/questions/questions';
 import { SurveyService } from '@/app/core/services/survey.service';
 
 @Component({
@@ -25,42 +25,52 @@ export class SurveysPage implements OnInit {
   public establishmentsList: Establishment[] = [];
   public selectedEstablishment: Establishment | undefined = undefined;
   public surveysList = signal<Survey[]>([]);
+  protected readonly isLoading = signal(false);
 
   ngOnInit(): void {
     this.getEstablishments();
   }
 
   getEstablishments() {
+    this.isLoading.set(true);
     this.establishmentService.getByOwnerId(this.currentUser!.id).subscribe({
       next: (establishments) => {
         console.log('Establecimientos ', establishments);
         this.establishmentsList = establishments;
+        this.isLoading.set(false);
       },
     });
   }
 
   onCreateSurvey() {
     console.log('Establecimiento seleccionado ', this.selectedEstablishment);
+    if (!this.selectedEstablishment) return;
+
     this.dialogService
       .open(Questions, {
         header: 'Crear encuesta',
+        closeOnEscape: true,
+        closable: true,
         inputValues: {
           establishment: this.selectedEstablishment,
         },
       })!
       .onClose.subscribe((survey) => {
+        console.log('Survey creada ', survey);
+        if (!survey) return;
+
         this.surveysList.update((surveys) => [...surveys, survey]);
       });
   }
 
   getSurveysByEstablishment() {
-    if (!this.selectedEstablishment) {
-      return;
-    }
+    if (!this.selectedEstablishment) return;
+    this.isLoading.set(true);
 
     this.surveyService.getByEstablishmentId(this.selectedEstablishment.id).subscribe({
       next: (surveys) => {
         this.surveysList.set(surveys);
+        this.isLoading.set(false);
       },
     });
   }

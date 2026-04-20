@@ -1,9 +1,9 @@
-import { SurveyConverter } from '@/app/core/converters/survey.converter';
-import { Survey } from '@/app/core/models/survey.model';
-import { FirestoreService } from '@/app/core/services/firestore.service';
 import { inject, Injectable } from '@angular/core';
 import { increment, updateDoc } from '@angular/fire/firestore';
 import { from } from 'rxjs';
+import { SurveyConverter } from '@/app/core/converters/survey.converter';
+import { Survey } from '@/app/core/models/survey.model';
+import { FirestoreService } from '@/app/core/services/firestore.service';
 
 @Injectable({
   providedIn: 'root',
@@ -30,7 +30,12 @@ export class SurveyService {
   }
 
   getById(surveyId: string) {
-    return from(this.fs.getDoc<Survey>(`surveys/${surveyId}`));
+    return this.fs.getDocByQuery<Survey>(
+      `surveys`,
+      surveyId,
+      { fieldPath: 'isActive', opStr: '==', value: true },
+      SurveyConverter,
+    );
   }
 
   sendScandalyticsEvent(surveyId: string) {

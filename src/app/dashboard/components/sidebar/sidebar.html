@@ -1,0 +1,41 @@
+<p-button (click)="visible = true" icon="pi pi-bars" variant="outlined" />
+
+<p-drawer #drawerRef [(visible)]="visible">
+  <div>
+    <ul class="list-none p-0 m-0 overflow-hidden">
+      <li>
+        <a
+          pRipple
+          class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+          [routerLink]="['/dashboard']"
+          (click)="visible = false"
+        >
+          <i class="pi pi-home mr-2"></i>
+          <span class="font-medium">Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a
+          pRipple
+          class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+          [routerLink]="['/dashboard/establishments']"
+          (click)="visible = false"
+        >
+          <i class="pi pi-shop mr-2"></i>
+          <span class="font-medium">Establecimientos</span>
+        </a>
+      </li>
+      <li>
+        <a
+          pRipple
+          class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+          [routerLink]="['/dashboard/surveys']"
+          (click)="visible = false"
+        >
+          <i class="pi pi-question mr-2"></i>
+          <span class="font-medium">Encuestas</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</p-drawer>

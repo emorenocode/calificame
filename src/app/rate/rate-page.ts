@@ -36,6 +36,7 @@ export class RatePage implements OnInit {
   getSurvey() {
     this.surveyService.getById(this.surveyId()).subscribe({
       next: (survey) => {
+        console.log('Survey => ', survey);
         if (!survey) {
           this.router.navigate(['/']);
           return;
